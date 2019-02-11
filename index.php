@@ -22,17 +22,17 @@ try{
 }
 
 //Define the query
-$sql = "UPDATE pets SET name = :new
-        WHERE name = :old";
+$sql = "UPDATE pets SET color = :color
+        WHERE name = :name";
 
 //Prepare the statement
 $statement = $dbh->prepare($sql);
 
 //Bind the params
-$old = 'Joey';
-$new = 'Troy';
-$statement->bindParam(':old', $old, PDO::PARAM_STR);
-$statement->bindParam(':new', $new, PDO::PARAM_STR);
+$color = 'brown';
+$name = 'Oscar';
+$statement->bindParam(':color', $color, PDO::PARAM_STR);
+$statement->bindParam(':name', $name, PDO::PARAM_STR);
 
 //Execute
 $statement->execute();
