@@ -22,7 +22,7 @@ try{
 }
 
 //Define the query
-$sql = "SELECT * FROM pets WHERE id = :id";
+$sql = "SELECT * FROM pets";
 
 //Prepare the statement
 $statement = $dbh->prepare($sql);
@@ -35,8 +35,10 @@ $statement->bindParam(':id', $id, PDO::PARAM_STR);
 $statement->execute();
 
 //Process the result
-$row = $statement->fetch(PDO::FETCH_ASSOC);
-echo $row['name'].", ".$row['type'].", ".$row['color'];
+$result = $statement->fetchAll(PDO::FETCH_ASSOC);
+foreach($result as $row){
+    echo $row['name'].", ".$row['type'].", ".$row['color'];
+}
 
 
 /*
