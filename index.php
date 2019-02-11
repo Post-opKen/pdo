@@ -22,6 +22,23 @@ try{
 }
 
 //Define the query
+$sql = "UPDATE pets SET name = :new
+        WHERE name = :old";
+
+//Prepare the statement
+$statement = $dbh->prepare($sql);
+
+//Bind the params
+$old = 'Joey';
+$new = 'Troy';
+$statement->bindParam(':old', $old, PDO::PARAM_STR);
+$statement->bindParam(':new', $new, PDO::PARAM_STR);
+
+//Execute
+$statement->execute();
+
+/*
+//Define the query
 $sql = "INSERT INTO pets(type, name, color)
         VALUES (:type, :name, :color)";
 
@@ -38,6 +55,8 @@ $statement->bindParam(':color', $color, PDO::PARAM_STR);
 
 //Execute
 $statement->execute();
+$id = $dbh->lastInsertId();
+echo "<p>Pet $id inserted successfully.</p>";
 
 //Bind the params
 $type = 'snake';
@@ -51,3 +70,4 @@ $statement->bindParam(':color', $color, PDO::PARAM_STR);
 $statement->execute();
 $id = $dbh->lastInsertId();
 echo "<p>Pet $id inserted successfully.</p>";
+*/
