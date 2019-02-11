@@ -7,15 +7,10 @@
  */
 
 //Connect to DB
-
-$username = 'edausgre_grcuser';
-$password = '@Eandaus123';
-$hostname = 'localhost';
-$database = 'edausgre_grc';
-
+require '/home/edausgre_grc/config.php';
 try{
     //instantiate a new database object
-    $dbh = new PDO("mysql:dbname=edausgre_grc", $username, $password);
+    $dbh = new PDO(DB_DSN, DB_USERNAME, DB_PASSWORD);
     echo 'Connected to Database!';
 }catch(PDOException $e) {
     echo $e->getMessage();
