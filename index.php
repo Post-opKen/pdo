@@ -22,6 +22,21 @@ try{
 }
 
 //Define the query
+$sql = "DELETE FROM pets WHERE id = :id";
+
+//Prepare the statement
+$statement = $dbh->prepare($sql);
+
+//Bind the params
+$id = 1;
+$statement->bindParam(':id', $id, PDO::PARAM_STR);
+
+//Execute
+$statement->execute();
+
+
+/*
+//Define the query
 $sql = "UPDATE pets SET color = :color
         WHERE name = :name";
 
@@ -36,6 +51,9 @@ $statement->bindParam(':name', $name, PDO::PARAM_STR);
 
 //Execute
 $statement->execute();
+
+*/
+
 
 /*
 //Define the query
