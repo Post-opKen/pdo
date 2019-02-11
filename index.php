@@ -22,6 +22,25 @@ try{
 }
 
 //Define the query
+$sql = "SELECT * FROM pets WHERE id = :id";
+
+//Prepare the statement
+$statement = $dbh->prepare($sql);
+
+//Bind the params
+$id = 3;
+$statement->bindParam(':id', $id, PDO::PARAM_STR);
+
+//Execute
+$statement->execute();
+
+//Process the result
+$row = $statement->fetch(PDO::FETCH_ASSOC);
+echo $row['name'].", ".$row['type'].", ".$row['color'];
+
+
+/*
+//Define the query
 $sql = "DELETE FROM pets WHERE id = :id";
 
 //Prepare the statement
@@ -33,6 +52,7 @@ $statement->bindParam(':id', $id, PDO::PARAM_STR);
 
 //Execute
 $statement->execute();
+*/
 
 
 /*
