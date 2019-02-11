@@ -22,6 +22,46 @@ try{
 }
 
 //Define the query
+$sql = "SELECT * FROM petOwners
+        INNER JOIN pets ON pets.id = petOwners.petId";
+
+//Prepare the statement
+$statement = $dbh->prepare($sql);
+
+//Bind the params
+$id = 3;
+$statement->bindParam(':id', $id, PDO::PARAM_STR);
+
+//Execute
+$statement->execute();
+
+//Process the result
+$result = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+echo "<table>
+        <tr>
+            <th>First</th>
+            <th>Last</th>
+            <th>Pet Name</th>
+            <th>Pet Type</th>
+            <th>Pet Color</th>
+        </tr>";
+
+foreach($result as $row){
+    echo $row['name'].", ".$row['type'].", ".$row['color'];
+    echo "<tr>
+                <td>{$row['first']}</td> 
+                <td>{$row['last']}</td> 
+                <td>{$row['name']}</td> 
+                <td>{$row['type']}</td> 
+                <td>{$row['color']}</td>  
+            </tr>";
+}
+echo "</table>";
+
+
+/*
+//Define the query
 $sql = "SELECT * FROM pets";
 
 //Prepare the statement
@@ -39,6 +79,7 @@ $result = $statement->fetchAll(PDO::FETCH_ASSOC);
 foreach($result as $row){
     echo $row['name'].", ".$row['type'].", ".$row['color'];
 }
+*/
 
 
 /*
